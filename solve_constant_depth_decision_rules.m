@@ -230,7 +230,7 @@ if (strcmp(solsta,'MSK_SOL_STA_PRIMAL_INFEASIBLE_CER')==1)
 elseif (strcmp(solsta,'MSK_SOL_STA_DUAL_INFEASIBLE_CER')==1)
     disp('Primal infinite optimal value');
     out=2;
-    opt_value=inf;
+    opt_value=-inf;
 else
     out=0;
     opt_value=prob.c'*sol;
