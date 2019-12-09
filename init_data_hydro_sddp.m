@@ -383,7 +383,9 @@ end
 
 %[MusInflows,Rs]=Compute_Mus_Rs(Mus,sigmaInflows,phinp,NS,TabS,TabP,T,pmaxS,Recent_History_Inflows);
 
-Demand=1.25*ones(T,1)*[31055,8297,7103,3367];
+%Demand=1.25*ones(T,1)*[31055,8297,7103,3367];
+Demand=ones(T,1)*[31055,8297,7103,3367];
+
 %Compute reduced demand
 x0=zeros(NS,1);
 for m=1:NS
