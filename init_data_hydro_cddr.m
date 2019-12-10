@@ -19,7 +19,7 @@
 %decision rules
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function [subi_a,subj_a,valij_a,betas,cost,ds,ps,qs,probabilities]=init_data_hydro_cddr(depth,T,M,option,path,sigmasN,AddP,Inflow_Noises)
+function [subi_a,subj_a,valij_a,betas,cost,ds,ps,qs,probabilities]=init_data_hydro_cddr(depth,T,M,path,AddP,Inflow_Noises)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Nb(i) is the number of thermal plants in subsystem i
@@ -290,31 +290,31 @@ end
 
 Echantillons=[H_SE,H_S,H_NE,H_Nord];
 
-sigmasNoises=zeros(12,4);
-for t=1:12
-    %Computation of sigmasNoises(t,m)
-    %Computation of sample of noise for month t subsystem m
-    for m=1:NS
-        Sample=[];
-        for k=1:((size(Echantillons,1)/12)-1)
-            noisevalue=(Echantillons(t+12*k,m)-Mus(t,m))/sigmaInflows(t,m);
-            for j=1:TabP{1,m}(t)
-                if (t-j>=1)
-                    aux=(Echantillons(t+12*k-j,m)-Mus(t-j,m))/sigmaInflows(t-j,m);
-                else
-                    aux=(Echantillons(t+12*k-j,m)-Mus(t-j+TabS(m),m))/sigmaInflows(t-j+TabS(m),m);
-                end
-                noisevalue=noisevalue-phinp{1,m}{1,t}(j)*aux;
-            end
-            Sample=[Sample,noisevalue];
-        end
-        if (option==1)
-            sigmaNoises(t,m)=sqrt(var(Sample));
-        else
-            sigmaNoises(t,m)=sigmasN;
-        end
-    end
-end
+% sigmasNoises=zeros(12,4);
+% for t=1:12
+%     %Computation of sigmasNoises(t,m)
+%     %Computation of sample of noise for month t subsystem m
+%     for m=1:NS
+%         Sample=[];
+%         for k=1:((size(Echantillons,1)/12)-1)
+%             noisevalue=(Echantillons(t+12*k,m)-Mus(t,m))/sigmaInflows(t,m);
+%             for j=1:TabP{1,m}(t)
+%                 if (t-j>=1)
+%                     aux=(Echantillons(t+12*k-j,m)-Mus(t-j,m))/sigmaInflows(t-j,m);
+%                 else
+%                     aux=(Echantillons(t+12*k-j,m)-Mus(t-j+TabS(m),m))/sigmaInflows(t-j+TabS(m),m);
+%                 end
+%                 noisevalue=noisevalue-phinp{1,m}{1,t}(j)*aux;
+%             end
+%             Sample=[Sample,noisevalue];
+%         end
+%         if (option==1)
+%             sigmaNoises(t,m)=sqrt(var(Sample));
+%         else
+%             sigmaNoises(t,m)=sigmasN;
+%         end
+%     end
+% end
 
 for t=1:T-1
         for j=1:M

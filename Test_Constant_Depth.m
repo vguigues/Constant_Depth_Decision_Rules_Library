@@ -1,9 +1,9 @@
 
 
-%addpath 'C:\Program Files\Mosek\9.0'
-%addpath 'C:\Program Files\Mosek\9.0\toolbox\r2015a'
-%addpath 'C:\Users\vince\Dropbox\Articles_Math\Arkadi_Anatoli_Vincent\DynamicProgramming\Constant_Depth_Decision_Rules_Library\Matlab_Library'
-%path='C:\Users\vince\Dropbox\Articles_Math\Arkadi_Anatoli_Vincent\DynamicProgramming\Constant_Depth_Decision_Rules_Library\Matlab_Library\';
+% addpath 'C:\Program Files\Mosek\9.0'
+% addpath 'C:\Program Files\Mosek\9.0\toolbox\r2015a'
+% addpath 'C:\Users\vince\Dropbox\Articles_Math\Arkadi_Anatoli_Vincent\DynamicProgramming\Constant_Depth_Decision_Rules_Library\Matlab_Library'
+% path='C:\Users\vince\Dropbox\Articles_Math\Arkadi_Anatoli_Vincent\DynamicProgramming\Constant_Depth_Decision_Rules_Library\Matlab_Library\';
 
 function [Costs,Times,CV]=Test_Constant_Depth(T,M,path,AddP)
 
@@ -27,8 +27,8 @@ Costs(1,1)=Zinfs(length(Zinfs));
 Costs(1,2)=Zsups(length(Zsups));
 
 %CDDR depth=1
-depth=1;
-[subi_a,subj_a,valij_a,betas,cost,ds,ps,qs,probabilities]=init_data_hydro_cddr(depth,T,M,2,path,sigmaN,AddP,Inflow_Noises);
+depth=1;                                                       
+[subi_a,subj_a,valij_a,betas,cost,ds,ps,qs,probabilities]=init_data_hydro_cddr(depth,T,M,path,AddP,Inflow_Noises);
 %For initialization with b_t of type depth>=1
 %[subi_a,subj_a,valij_a,betas,cost,ds,ps,qs,probabilities]=init_data_cddr(2,T,M,1,path,sigmasN,AddP,Inflow_Noises,2);
 [sol,opt_value,out,time1,time2,nvars,counter]=solve_constant_depth_decision_rules_depth_one(subi_a,subj_a,valij_a,betas,cost,probabilities,ds,T,ps,qs);
@@ -40,7 +40,7 @@ Times(2,2)=time2;
 
 %CDDR depth=2
 depth=2;
-[subi_a,subj_a,valij_a,betas,cost,ds,ps,qs,probabilities]=init_data_hydro_cddr(depth,T,M,2,path,sigmaN,AddP,Inflow_Noises);
+[subi_a,subj_a,valij_a,betas,cost,ds,ps,qs,probabilities]=init_data_hydro_cddr(depth,T,M,path,AddP,Inflow_Noises);
 [sol,opt_value,out,time1,time2,nvars,counter]=solve_constant_depth_decision_rules(subi_a,subj_a,valij_a,betas,cost,ds,T,ps,qs,probabilities,depth);
 Costs(3,1)=opt_value;
 CV(2,1)=nvars;
@@ -50,7 +50,7 @@ Times(3,2)=time2;
 
 %CDDR depth=3
 depth=3;
-[subi_a,subj_a,valij_a,betas,cost,ds,ps,qs,probabilities]=init_data_hydro_cddr(depth,T,M,2,path,sigmaN,AddP,Inflow_Noises);
+[subi_a,subj_a,valij_a,betas,cost,ds,ps,qs,probabilities]=init_data_hydro_cddr(depth,T,M,path,AddP,Inflow_Noises);
 [sol,opt_value,out,time1,time2,nvars,counter]=solve_constant_depth_decision_rules(subi_a,subj_a,valij_a,betas,cost,ds,T,ps,qs,probabilities,depth);
 Costs(4,1)=opt_value;
 CV(3,1)=nvars;
@@ -60,7 +60,7 @@ Times(4,2)=time2;
 
 %CDDR depth=4
 depth=4;
-[subi_a,subj_a,valij_a,betas,cost,ds,ps,qs,probabilities]=init_data_hydro_cddr(depth,T,M,2,path,sigmaN,AddP,Inflow_Noises);
+[subi_a,subj_a,valij_a,betas,cost,ds,ps,qs,probabilities]=init_data_hydro_cddr(depth,T,M,path,AddP,Inflow_Noises);
 [sol,opt_value,out,time1,time2,nvars,counter]=solve_constant_depth_decision_rules(subi_a,subj_a,valij_a,betas,cost,ds,T,ps,qs,probabilities,depth);
 Costs(5,1)=opt_value;
 CV(4,1)=nvars;
